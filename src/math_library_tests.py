@@ -78,7 +78,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertRaises(ValueError, exp, 654, -5)
 
     def test_sqrt(self):
-        """ @brief Method to test the root (√).
+        """ @brief Method to test the root (sqrt).
             @param self Self object.
         The root function doesn't support imaginary numbers.
         The operand must be a real number.
