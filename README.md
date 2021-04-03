@@ -1,6 +1,5 @@
-<h1> IVS project 2 </h1>
-
-Calculator with basic functionality
+# IVS project 2 
+with basic functionality
 > list all parts of project?
 
 > GUI
@@ -12,7 +11,7 @@ Calculator with basic functionality
 > etc
 
 
-<h2>About</h2>
+## About
 Further description of calculator
 > Why we do it
 
@@ -21,7 +20,7 @@ Further description of calculator
 > etc
 
 
-<h2>Use case</h2>
+##Use case
 > Use cases of our calculator
 >
 > Why use it
@@ -29,19 +28,19 @@ Further description of calculator
 > maybe move this below Instalation?
 
 
-<h2>GitHub</h2>
+##GitHub
 Get our calculator here:
 
 `git clone  https://github.com/Stardust-Crusaders-IVS/IVS-calculator.git`
 
-<h2>Instalation</h2>
+##Instalation
 Instalation guide
 
 
-<h2>Programing language & enviroment used</h2>
+##Programing language & enviroment used
 > python
 >
 > enviroment for GUI implementation?
 
-<h2>Contributors</h2>
+##Contributors
 Feanor60, Aenariss, Brwo
