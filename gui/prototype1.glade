@@ -178,6 +178,9 @@
                 <property name="margin-left">10</property>
                 <property name="margin-right">10</property>
                 <property name="margin-top">10</property>
+                <property name="editable">False</property>
+                <property name="caps-lock-warning">False</property>
+                <property name="input-purpose">digits</property>
               </object>
             </child>
           </object>
@@ -203,7 +206,7 @@
                   <object class="GtkButton">
                     <property name="label" translatable="yes">1</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -222,7 +225,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -241,7 +244,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -260,7 +263,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -279,7 +282,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -298,7 +301,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -317,7 +320,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -336,7 +339,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -355,7 +358,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -374,7 +377,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -393,7 +396,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -412,7 +415,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -442,17 +445,18 @@
               </packing>
             </child>
             <child>
-              <!-- n-columns=2 n-rows=4 -->
+              <!-- n-columns=2 n-rows=5 -->
               <object class="GtkGrid" id="operators">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
                   <object class="GtkButton">
-                    <property name="label" translatable="yes">!</property>
+                    <property name="label" translatable="yes">!
+</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -467,11 +471,11 @@
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="label" translatable="yes">*</property>
+                    <property name="label" translatable="yes">+</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -485,12 +489,12 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton">
-                    <property name="label" translatable="yes">+</property>
+                  <object class="GtkButton" id="rem">
+                    <property name="label" translatable="yes">REM</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -500,6 +504,25 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="clr">
+                    <property name="label" translatable="yes">CLR</property>
+                    <property name="width-request">100</property>
+                    <property name="height-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="receives-default">True</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="relief">none</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
                     <property name="top-attach">0</property>
                   </packing>
                 </child>
@@ -509,26 +532,7 @@
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
-                    <property name="margin-top">10</property>
-                    <property name="margin-bottom">10</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="relief">none</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton">
-                    <property name="label" translatable="yes">/</property>
-                    <property name="width-request">100</property>
-                    <property name="height-request">100</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -543,11 +547,11 @@
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="label" translatable="yes">^</property>
+                    <property name="label" translatable="yes">/</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -562,11 +566,11 @@
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="label" translatable="yes">2-root</property>
+                    <property name="label" translatable="yes">!</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -581,7 +585,27 @@
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="label" translatable="yes">n-root</property>
+                    <property name="label" translatable="yes">^
+</property>
+                    <property name="width-request">100</property>
+                    <property name="height-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="receives-default">True</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="relief">none</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">√</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
@@ -594,8 +618,27 @@
                     <property name="relief">none</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">n√</property>
+                    <property name="width-request">100</property>
+                    <property name="height-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="receives-default">True</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="relief">none</property>
+                  </object>
+                  <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">3</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
               </object>
