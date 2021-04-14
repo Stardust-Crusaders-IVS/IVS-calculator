@@ -37,6 +37,25 @@ def user_result(self, entry):
     entry.set_text("This should show the result")
 
 
+def rem_char(self, entry):
+    """ @brief removes last character from entry
+        @param *self the caller of the function
+        @param entry the entry where to remove the character
+    """
+    del self  # Unused for now
+    text = entry.get_text()
+    entry.set_text(text[:-1])
+
+
+def clear(self, entry):
+    """ @brief clears the entry
+        @param *self the caller of the function
+        @param entry the entry which to clear
+    """
+    del self  # Unused for now
+    entry.set_text("")
+
+
 def change_fonts(builder):
     """ @brief change fonts of all elements
         @param builder builder class for making gui from glade
@@ -47,8 +66,10 @@ def change_fonts(builder):
     entry = builder.get_object('entry')
     entry.modify_font(font)
     connect_signal_grid(builder, 'numbers', 4, 3)
-    connect_signal_grid(builder, 'operators', 4, 2)
+    connect_signal_grid(builder, 'operators', 5, 2)
     builder.get_object('equals').connect("clicked", user_result, entry)
+    builder.get_object('rem').connect("clicked", rem_char, entry)
+    builder.get_object('clr').connect("clicked", clear, entry)
 
 
 def connect_signal_grid(builder, grid_name, rows, columns):
@@ -58,11 +79,14 @@ def connect_signal_grid(builder, grid_name, rows, columns):
         @param rows number of rows of the grid
         @param columns number of coulmns of the grid
     """
+    exceptions = ["=", "REM", "CLR"]
     entry = builder.get_object("entry")
     grid = builder.get_object(grid_name)
     for i in range(0, columns):
         for j in range(0, rows):
             button = grid.get_child_at(i, j)
+            if button.get_label() in exceptions:
+                continue
             button.connect("clicked", user_input, entry)
 
 
