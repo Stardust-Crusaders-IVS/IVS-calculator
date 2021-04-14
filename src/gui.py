@@ -2,10 +2,8 @@
     @author: Tadeas Vintrlik <xvintr04>
     Documentation for main GUI package
 """
-import gi
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 from gi.repository import Pango
-gi.require_version("Gtk", "3.0")
 
 
 def main():
@@ -64,7 +62,31 @@ def change_fonts(builder):
     font = Pango.FontDescription('Sans Bold 18')
     change_font_grid(builder, 'numbers', font, 4, 3)
     change_font_grid(builder, 'operators', font, 4, 2)
-    builder.get_object('entry').modify_font(font)
+    entry = builder.get_object('entry')
+    entry.modify_font(font)
+    entry.set_alignment(1)
+
+
+def on_key_pressed(widget, event, entry):
+    """ @brief handler for key-press-event
+        @param widget widget active when key press occured
+        @param event type of event that occured
+        @param entry entry filed to modify
+    """
+    inputables = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+                  "+", "-", "/", "*", "!", "^"]
+    if event.keyval == Gdk.KEY_Return or chr(event.keyval) == "=":
+        user_result(widget, entry)
+    elif event.keyval == Gdk.KEY_c:
+        clear(widget, entry)
+    elif event.keyval == Gdk.KEY_BackSpace:
+        rem_char(widget, entry)
+    elif event.keyval == Gdk.KEY_s:
+        entry.set_text(entry.get_text() + "√")
+    elif event.keyval == Gdk.KEY_r:
+        entry.set_text(entry.get_text() + "n√")
+    elif chr(event.keyval) in inputables:
+        entry.set_text(entry.get_text() + chr(event.keyval))
 
 
 def connect_signals(builder):
@@ -77,6 +99,8 @@ def connect_signals(builder):
     builder.get_object('equals').connect("clicked", user_result, entry)
     builder.get_object('rem').connect("clicked", rem_char, entry)
     builder.get_object('clr').connect("clicked", clear, entry)
+    window = builder.get_object("window1")
+    window.connect("key-press-event", on_key_pressed, entry)
 
 
 def connect_signal_grid(builder, grid_name, rows, columns):
