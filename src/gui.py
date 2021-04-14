@@ -20,15 +20,50 @@ def main():
     Gtk.main()
 
 
+def user_input(self, entry):
+    """ @brief inputs the desired symbol into the entry
+        @param self the caller of the function
+        @param entry the entry where to add the new symbol
+    """
+    entry.set_text(entry.get_text() + self.get_label())
+
+
+def user_result(self, entry):
+    """ @brief calculates the result from the entry
+        @param *self the caller of the function
+        @param entry the entry where to show the result
+    """
+    del self  # Unused for now
+    entry.set_text("This should show the result")
+
+
 def change_fonts(builder):
     """ @brief change fonts of all elements
         @param builder builder class for making gui from glade
     """
     font = Pango.FontDescription('Sans Bold 18')
-    # TODO: magical constants
     change_font_grid(builder, 'numbers', font, 4, 3)
     change_font_grid(builder, 'operators', font, 4, 2)
-    builder.get_object('entry').modify_font(font)
+    entry = builder.get_object('entry')
+    entry.modify_font(font)
+    connect_signal_grid(builder, 'numbers', 4, 3)
+    connect_signal_grid(builder, 'operators', 4, 2)
+    builder.get_object('equals').connect("clicked", user_result, entry)
+
+
+def connect_signal_grid(builder, grid_name, rows, columns):
+    """ @brief connect all buttons in grid to callbacks
+        @param builder builder class for making gui from glade
+        @param grid_name name of the grid to use
+        @param rows number of rows of the grid
+        @param columns number of coulmns of the grid
+    """
+    entry = builder.get_object("entry")
+    grid = builder.get_object(grid_name)
+    for i in range(0, columns):
+        for j in range(0, rows):
+            button = grid.get_child_at(i, j)
+            button.connect("clicked", user_input, entry)
 
 
 def change_font_grid(builder, grid_name, font, rows, columns):
