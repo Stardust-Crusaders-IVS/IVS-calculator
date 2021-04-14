@@ -16,6 +16,7 @@ def main():
     builder.add_from_file("../gui/prototype1.glade")
     window = builder.get_object("window1")
     change_fonts(builder)
+    connect_signals(builder)
     window.show_all()
     Gtk.main()
 
@@ -63,10 +64,16 @@ def change_fonts(builder):
     font = Pango.FontDescription('Sans Bold 18')
     change_font_grid(builder, 'numbers', font, 4, 3)
     change_font_grid(builder, 'operators', font, 4, 2)
-    entry = builder.get_object('entry')
-    entry.modify_font(font)
+    builder.get_object('entry').modify_font(font)
+
+
+def connect_signals(builder):
+    """ @brief connect signals to all buttons
+        @param builder builder class for making gui from glade
+    """
     connect_signal_grid(builder, 'numbers', 4, 3)
     connect_signal_grid(builder, 'operators', 5, 2)
+    entry = builder.get_object('entry')
     builder.get_object('equals').connect("clicked", user_result, entry)
     builder.get_object('rem').connect("clicked", rem_char, entry)
     builder.get_object('clr').connect("clicked", clear, entry)
