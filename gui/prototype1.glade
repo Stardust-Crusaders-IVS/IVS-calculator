@@ -451,8 +451,7 @@
                 <property name="can-focus">False</property>
                 <child>
                   <object class="GtkButton">
-                    <property name="label" translatable="yes">!
-</property>
+                    <property name="label" translatable="yes">*</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
@@ -585,8 +584,7 @@
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="label" translatable="yes">^
-</property>
+                    <property name="label" translatable="yes">^</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
