@@ -16,6 +16,7 @@ def main():
     change_fonts(builder)
     connect_signals(builder)
     window.show_all()
+    window.connect("destroy", Gtk.main_quit)
     Gtk.main()
 
 
