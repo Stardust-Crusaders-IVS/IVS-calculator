@@ -62,7 +62,7 @@ def change_fonts(builder):
     """
     font = Pango.FontDescription('Sans Bold 18')
     change_font_grid(builder, 'numbers', font, 4, 3)
-    change_font_grid(builder, 'operators', font, 4, 2)
+    change_font_grid(builder, 'operators', font, 5, 2)
     entry = builder.get_object('entry')
     entry.modify_font(font)
     entry.set_alignment(1)
