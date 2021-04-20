@@ -4,15 +4,21 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkMenuBar">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
             <child>
               <object class="GtkMenuItem">
                 <property name="visible">True</property>
@@ -82,64 +88,6 @@
               <object class="GtkMenuItem">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">_Upravit</property>
-                <property name="use-underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-cut</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="use-underline">True</property>
-                        <property name="use-stock">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-copy</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="use-underline">True</property>
-                        <property name="use-stock">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-paste</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="use-underline">True</property>
-                        <property name="use-stock">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-delete</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="use-underline">True</property>
-                        <property name="use-stock">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label" translatable="yes">_Zobrazit</property>
-                <property name="use-underline">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">_Nápověda</property>
                 <property name="use-underline">True</property>
                 <child type="submenu">
@@ -170,15 +118,23 @@
           <object class="GtkViewport">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="margin-left">10</property>
+            <property name="margin-right">10</property>
+            <property name="margin-top">10</property>
+            <property name="margin-bottom">10</property>
             <child>
               <object class="GtkEntry" id="entry">
-                <property name="height-request">150</property>
+                <property name="width-request">480</property>
+                <property name="height-request">120</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="margin-left">10</property>
-                <property name="margin-right">10</property>
-                <property name="margin-top">10</property>
-                <property name="editable">False</property>
+                <property name="has-focus">True</property>
+                <property name="is-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="has-default">True</property>
+                <property name="receives-default">True</property>
+                <property name="double-buffered">False</property>
+                <property name="has-frame">False</property>
                 <property name="caps-lock-warning">False</property>
                 <property name="input-purpose">digits</property>
               </object>
@@ -207,8 +163,8 @@
                     <property name="label" translatable="yes">1</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
-                    <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
@@ -226,8 +182,8 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
-                    <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
@@ -245,8 +201,8 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
-                    <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
@@ -264,6 +220,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -283,6 +240,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -302,6 +260,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -321,6 +280,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -340,6 +300,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -359,6 +320,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -378,6 +340,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -397,6 +360,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -416,6 +380,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -456,6 +421,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -475,6 +441,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -488,14 +455,14 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="rem">
-                    <property name="label" translatable="yes">REM</property>
+                  <object class="GtkButton" id="fib">
+                    <property name="label" translatable="yes">Fib</property>
                     <property name="width-request">100</property>
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
-                    <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
@@ -513,8 +480,8 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
-                    <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
@@ -532,6 +499,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -551,6 +519,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -570,6 +539,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -589,6 +559,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -608,6 +579,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -627,6 +599,7 @@
                     <property name="height-request">100</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="focus-on-click">False</property>
                     <property name="receives-default">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
