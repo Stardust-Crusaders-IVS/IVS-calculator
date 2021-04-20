@@ -12,11 +12,11 @@ def main():
     """
     builder = Gtk.Builder()
     builder.add_from_file("../gui/prototype1.glade")
-    window = builder.get_object("window1")
+    window_main = builder.get_object("window1")
     change_fonts(builder)
     connect_signals(builder)
-    window.show_all()
-    window.connect("destroy", Gtk.main_quit)
+    window_main.show_all()
+    window_main.connect("destroy", Gtk.main_quit)
     Gtk.main()
 
 
@@ -25,7 +25,19 @@ def user_input(self, entry):
         @param self the caller of the function
         @param entry the entry where to add the new symbol
     """
-    entry.set_text(entry.get_text() + self.get_label())
+    label = self.get_label()
+    if "√" in label:
+        entry.set_text(label + entry.get_text())
+    elif label == "Fib":
+        entry.set_text(label + "(" + entry.get_text() + ")")
+    else:
+        entry.set_text(entry.get_text() + label)
+
+    # if nth root move cursor to the begining for easier editing
+    if label == "n√":
+        entry.set_position(0)
+    else:
+        entry.set_position(len(entry.get_text()))
 
 
 def user_result(self, entry):
@@ -35,17 +47,7 @@ def user_result(self, entry):
     """
     del self  # Unused for now
     entry.set_text("This should show the result")
-
-
-def rem_char(self, entry):
-    """ @brief removes last character from entry
-        @param *self the caller of the function
-        @param entry the entry where to remove the character
-    """
-    del self  # Unused for now
-    text = entry.get_text()
-    entry.set_text(text[:-1])
-
+    entry.set_position(len(entry.get_text()))
 
 def clear(self, entry):
     """ @brief clears the entry
@@ -74,20 +76,8 @@ def on_key_pressed(widget, event, entry):
         @param event type of event that occured
         @param entry entry filed to modify
     """
-    inputables = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
-                  "+", "-", "/", "*", "!", "^"]
     if event.keyval == Gdk.KEY_Return or chr(event.keyval) == "=":
         user_result(widget, entry)
-    elif event.keyval == Gdk.KEY_c:
-        clear(widget, entry)
-    elif event.keyval == Gdk.KEY_BackSpace:
-        rem_char(widget, entry)
-    elif event.keyval == Gdk.KEY_s:
-        entry.set_text(entry.get_text() + "√")
-    elif event.keyval == Gdk.KEY_r:
-        entry.set_text(entry.get_text() + "n√")
-    elif chr(event.keyval) in inputables:
-        entry.set_text(entry.get_text() + chr(event.keyval))
 
 
 def connect_signals(builder):
@@ -98,7 +88,6 @@ def connect_signals(builder):
     connect_signal_grid(builder, 'operators', 5, 2)
     entry = builder.get_object('entry')
     builder.get_object('equals').connect("clicked", user_result, entry)
-    builder.get_object('rem').connect("clicked", rem_char, entry)
     builder.get_object('clr').connect("clicked", clear, entry)
     window = builder.get_object("window1")
     window.connect("key-press-event", on_key_pressed, entry)
