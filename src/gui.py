@@ -16,14 +16,16 @@ def main():
     change_fonts(builder)
     connect_signals(builder)
     window_main.show_all()
+    builder.get_object("invalid").hide()
     window_main.connect("destroy", Gtk.main_quit)
     Gtk.main()
 
 
-def user_input(self, entry):
+def user_input(self, entry, builder):
     """ @brief inputs the desired symbol into the entry
         @param self the caller of the function
         @param entry the entry where to add the new symbol
+        @param builder builder class for making gui from glade
     """
     label = self.get_label()
     if "√" in label:
@@ -39,6 +41,8 @@ def user_input(self, entry):
     else:
         entry.set_position(len(entry.get_text()))
 
+    validate_entry(entry, builder)
+
 
 def user_result(self, entry):
     """ @brief calculates the result from the entry
@@ -49,13 +53,15 @@ def user_result(self, entry):
     entry.set_text("This should show the result")
     entry.set_position(len(entry.get_text()))
 
-def clear(self, entry):
+
+def clear(self, entry, builder):
     """ @brief clears the entry
         @param *self the caller of the function
         @param entry the entry which to clear
     """
     del self  # Unused for now
     entry.set_text("")
+    validate_entry(entry, builder)
 
 
 def change_fonts(builder):
@@ -70,14 +76,29 @@ def change_fonts(builder):
     entry.set_alignment(1)
 
 
-def on_key_pressed(widget, event, entry):
+def on_key_pressed(widget, event, entry, builder):
     """ @brief handler for key-press-event
         @param widget widget active when key press occured
         @param event type of event that occured
         @param entry entry filed to modify
+        @param builder builder class for making gui from glade
     """
+    validate_entry(entry, builder)
     if event.keyval == Gdk.KEY_Return or chr(event.keyval) == "=":
         user_result(widget, entry)
+
+
+def validate_entry(entry, builder):
+    """ @brief checks if the entry is valid
+        @param self the caller of the function
+        @param entry the entry where to add the new symbol
+        @param builder builder class for making gui from glade
+    """
+    # TODO: The condition should test if input can be calculated
+    if len(entry.get_text()) > 3:
+        builder.get_object("invalid").show()
+    else:
+        builder.get_object("invalid").hide()
 
 
 def connect_signals(builder):
@@ -88,9 +109,9 @@ def connect_signals(builder):
     connect_signal_grid(builder, 'operators', 5, 2)
     entry = builder.get_object('entry')
     builder.get_object('equals').connect("clicked", user_result, entry)
-    builder.get_object('clr').connect("clicked", clear, entry)
+    builder.get_object('clr').connect("clicked", clear, entry, builder)
     window = builder.get_object("window1")
-    window.connect("key-press-event", on_key_pressed, entry)
+    window.connect("key-press-event", on_key_pressed, entry, builder)
 
 
 def connect_signal_grid(builder, grid_name, rows, columns):
@@ -108,7 +129,7 @@ def connect_signal_grid(builder, grid_name, rows, columns):
             button = grid.get_child_at(i, j)
             if button.get_label() in exceptions:
                 continue
-            button.connect("clicked", user_input, entry)
+            button.connect("clicked", user_input, entry, builder)
 
 
 def change_font_grid(builder, grid_name, font, rows, columns):
