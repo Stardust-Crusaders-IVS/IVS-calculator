@@ -13,11 +13,11 @@ def main():
     builder = Gtk.Builder()
     builder.add_from_file("../gui/prototype1.glade")
     window_main = builder.get_object("window1")
-    change_fonts(builder)
+    window_main.set_title("Kalkulačka")
+    change_fonts(builder, "")
     connect_signals(builder)
     window_main.show_all()
     builder.get_object("invalid").hide()
-    window_main.connect("destroy", Gtk.main_quit)
     Gtk.main()
 
 
@@ -64,11 +64,13 @@ def clear(self, entry, builder):
     validate_entry(entry, builder)
 
 
-def change_fonts(builder):
+def change_fonts(builder, font_param):
     """ @brief change fonts of all elements
         @param builder builder class for making gui from glade
     """
-    font = Pango.FontDescription('Sans Bold 18')
+    if not font_param:
+        font_param = 'Sans Bold 18'
+    font = Pango.FontDescription(font_param)
     change_font_grid(builder, 'numbers', font, 4, 3)
     change_font_grid(builder, 'operators', font, 5, 2)
     entry = builder.get_object('entry')
@@ -112,6 +114,24 @@ def connect_signals(builder):
     builder.get_object('clr').connect("clicked", clear, entry, builder)
     window = builder.get_object("window1")
     window.connect("key-press-event", on_key_pressed, entry, builder)
+    window.connect("destroy", Gtk.main_quit)
+    font_change = builder.get_object('font_change')
+    font_change.connect("activate", font_select, builder)
+
+
+def font_select(self, builder):
+    """ @brief open font select window
+        @param self the caller of the function
+        @param builder builder class for making gui from glade
+    """
+    del self
+    dialog = Gtk.FontSelectionDialog("Prosím Vyberte Font")
+    response = dialog.run()
+    if response == -5:
+        change_fonts(builder, dialog.get_font_name())
+        dialog.close()
+    else:
+        dialog.close()
 
 
 def connect_signal_grid(builder, grid_name, rows, columns):
