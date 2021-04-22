@@ -2,8 +2,7 @@
     @author: Tadeas Vintrlik <xvintr04>
     Documentation for main GUI package
 """
-from gi.repository import Gtk, Gdk
-from gi.repository import Pango
+from gi.repository import Gtk, Gdk, GdkPixbuf, Pango
 
 
 def main():
@@ -14,6 +13,8 @@ def main():
     builder.add_from_file("../gui/prototype1.glade")
     window_main = builder.get_object("window1")
     window_main.set_title("Kalkulačka")
+    icon = GdkPixbuf.Pixbuf.new_from_file("../gui/icon.jpeg")
+    window_main.set_icon(icon)
     change_fonts(builder, "")
     connect_signals(builder)
     window_main.show_all()
@@ -117,6 +118,10 @@ def connect_signals(builder):
     window.connect("destroy", Gtk.main_quit)
     font_change = builder.get_object('font_change')
     font_change.connect("activate", font_select, builder)
+    about = builder.get_object('about')
+    about.connect("activate", about_show)
+    exit_button = builder.get_object('exit')
+    exit_button.connect("activate", Gtk.main_quit)
 
 
 def font_select(self, builder):
@@ -132,6 +137,30 @@ def font_select(self, builder):
         dialog.close()
     else:
         dialog.close()
+
+
+def about_show(self):
+    """ @brief open about window
+        @param self the caller of the function
+        @param builder builder class for making gui from glade
+    """
+    del self
+    about = Gtk.AboutDialog("O aplikaci")
+    icon = GdkPixbuf.Pixbuf.new_from_file("../gui/icon.jpeg")
+    about.set_logo(icon)
+    about.set_comments("Jednoduchá aplikace kalkulačky.")
+    about.set_version("1.0")
+    about.set_program_name("Kalkulačka")
+    about.set_license("Program je pod GNU GPL v3 licencí.\n"
+                       "Kompletní znění licence je součástí zdrojových souborů, "
+                       "popřípadě zde:\n"
+                       "https://www.gnu.org/licenses/gpl-3.0.en.html")
+    about.set_authors(["Vojtěch Bůbela",
+                        "Vojtěch Fiala",
+                        "Tadeáš Vintrlík"])
+    response = about.run()
+    if response == -4:
+        about.close()
 
 
 def connect_signal_grid(builder, grid_name, rows, columns):
