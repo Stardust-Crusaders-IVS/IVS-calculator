@@ -153,12 +153,12 @@ def about_show(self):
     about.set_version("1.0")
     about.set_program_name("Kalkulačka")
     about.set_license("Program je pod GNU GPL v3 licencí.\n"
-                       "Kompletní znění licence je součástí zdrojových souborů, "
-                       "popřípadě zde:\n"
-                       "https://www.gnu.org/licenses/gpl-3.0.en.html")
+                      "Kompletní znění licence je součástí zdrojových souborů"
+                      ", popřípadě zde:\n"
+                      "https://www.gnu.org/licenses/gpl-3.0.en.html")
     about.set_authors(["Vojtěch Bůbela",
-                        "Vojtěch Fiala",
-                        "Tadeáš Vintrlík"])
+                       "Vojtěch Fiala",
+                       "Tadeáš Vintrlík"])
     response = about.run()
     if response == -4:
         about.close()
@@ -199,7 +199,7 @@ def change_font_grid(builder, grid_name, font, rows, columns):
 
 
 if __name__ == "__main__":
-    APP = Gtk.Application(application_id='Calc')
+    APP = Gtk.Application(application_id='Calc')  # main Gtk window
     APP.connect('activate', main)
     APP.run(None)
     main()
