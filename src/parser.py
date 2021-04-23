@@ -173,9 +173,7 @@ def split_elements(text):
     @return array of strings split accordingly
     """
     split = regex.split(r"(\+|-|\*|\/|!|\^|√|\(|\)| )", text)
-    split = list(filter(lambda x: len(x) > 0, split))
-    return split
-
+    return list(filter(lambda x: x != " " and x != "", split))
 
 def check_valid(text):
     """ @brief check if a valid (computable) input
