@@ -5,6 +5,7 @@
 The graphical interaface uses GTK as the graphical framekwork.
 Gtk API is called by the python gi library.
 """
+import parser
 from gi.repository import Gtk, Gdk, GdkPixbuf, Pango
 
 
@@ -25,11 +26,10 @@ def main():
     Gtk.main()
 
 
-def user_input(self, entry, builder):
+def user_input(self, entry):
     """ @brief inputs the desired symbol into the entry
     @param self the caller of the function
     @param entry the entry where to add the new symbol
-    @param builder builder class for making gui from glade
     """
     label = self.get_label()
     if "√" in label:
@@ -45,8 +45,6 @@ def user_input(self, entry, builder):
     else:
         entry.set_position(len(entry.get_text()))
 
-    validate_entry(entry, builder)
-
 
 def user_result(self, entry):
     """ @brief calculates the result from the entry
@@ -58,14 +56,14 @@ def user_result(self, entry):
     entry.set_position(len(entry.get_text()))
 
 
-def clear(self, entry, builder):
+def clear(self, entry):
     """ @brief clears the entry
     @param *self the caller of the function
     @param entry the entry which to clear
     """
     del self  # Unused for now
     entry.set_text("")
-    validate_entry(entry, builder)
+    # validate_entry(entry, "", builder)
 
 
 def change_fonts(builder, font_param):
@@ -82,29 +80,46 @@ def change_fonts(builder, font_param):
     entry.set_alignment(1)
 
 
-def on_key_pressed(widget, event, entry, builder):
+def on_key_pressed(widget, event, entry):
     """ @brief handler for key-press-event
     @param widget widget active when key press occured
     @param event type of event that occured
     @param entry entry filed to modify
-    @param builder builder class for making gui from glade
     """
-    validate_entry(entry, builder)
     if event.keyval == Gdk.KEY_Return or chr(event.keyval) == "=":
         user_result(widget, entry)
 
 
-def validate_entry(entry, builder):
-    """ @brief checks if the entry is valid
-    @param self the caller of the function
-    @param entry the entry where to add the new symbol
+def validate_entry_insert(entry, char_in, index_before, index_after, builder):
+    """ @brief checks if the entry is valid after insert signal
+    @param entry entry filed to modify
+    @param char_in the character last entered
+    @param index_before index of cursor before the instert
+    @param index_after index of cursor after the instert
     @param builder builder class for making gui from glade
     """
-    # TODO: The condition should test if input can be calculated
-    if len(entry.get_text()) > 3:
-        builder.get_object("invalid").show()
-    else:
+    del char_in
+    del index_before
+    del index_after
+    if parser.check_valid(entry.get_text()):
         builder.get_object("invalid").hide()
+    else:
+        builder.get_object("invalid").show()
+
+
+def validate_entry_delete(entry, index_before, index_after, builder):
+    """ @brief checks if the entry is valid after delete singal
+    @param entry entry filed to modify
+    @param index_before index of cursor before the instert
+    @param index_after index of cursor after the instert
+    @param builder builder class for making gui from glade
+    """
+    del index_before
+    del index_after
+    if parser.check_valid(entry.get_text()):
+        builder.get_object("invalid").hide()
+    else:
+        builder.get_object("invalid").show()
 
 
 def connect_signals(builder):
@@ -118,6 +133,8 @@ def connect_signals(builder):
     builder.get_object('clr').connect("clicked", clear, entry, builder)
     window = builder.get_object("window1")
     window.connect("key-press-event", on_key_pressed, entry, builder)
+    entry.connect_after("insert-text", validate_entry_insert, builder)
+    entry.connect_after("delete-text", validate_entry_delete, builder)
     window.connect("destroy", Gtk.main_quit)
     font_change = builder.get_object('font_change')
     font_change.connect("activate", font_select, builder)
@@ -181,7 +198,8 @@ def connect_signal_grid(builder, grid_name, rows, columns):
             button = grid.get_child_at(i, j)
             if button.get_label() in exceptions:
                 continue
-            button.connect("clicked", user_input, entry, builder)
+            button.connect("clicked", user_input, entry)
+            # button.connect_after("clicked", validate_entry, entry, builder)
 
 
 def change_font_grid(builder, grid_name, font, rows, columns):
