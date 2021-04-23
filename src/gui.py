@@ -1,5 +1,6 @@
 """ @package gui
-@author: Tadeas Vintrlik <xvintr04>
+@author Tadeas Vintrlik <xvintr04>
+
 Documentation for main GUI package
 """
 from gi.repository import Gtk, Gdk, GdkPixbuf, Pango
