@@ -278,17 +278,17 @@ def compute_solution(text):
     @return the numeric result as a string
     """
 
-    text = split_elements(text)
-    if test_binary(text):
-        return compute_binary(text)
+    array = split_elements(text)
+    if test_binary(array):
+        return compute_binary(array)
 
-    if test_prefix(text):
-        return compute_prefix(text)
+    if test_prefix(array):
+        return compute_prefix(array)
 
-    if test_postfix(text):
-        return compute_postfix(text)
+    if test_postfix(array):
+        return compute_postfix(array)
 
-    if test_function(text):
-        return compute_function(text)
+    if test_function(array):
+        return compute_function(array)
 
-    return text
+    return array[0]
