@@ -52,7 +52,8 @@ def user_result(self, entry):
     @param entry the entry where to show the result
     """
     del self  # Unused for now
-    entry.set_text("This should show the result")
+    result = parser.compute_solution(entry.get_text())
+    entry.set_text(result)
     entry.set_position(len(entry.get_text()))
 
 
