@@ -1,7 +1,9 @@
 """ @package gui
+@brief Graphical User interface for the calculator
 @author Tadeas Vintrlik <xvintr04>
 
-Documentation for main GUI package
+The graphical interaface uses GTK as the graphical framekwork.
+Gtk API is called by the python gi library.
 """
 from gi.repository import Gtk, Gdk, GdkPixbuf, Pango
 
