@@ -6,6 +6,7 @@ A very simple parser that serves
 as an interface between the ::gui and ::math_library
 """
 import regex
+import math_library as m
 
 ## List of all the possible operators, unsued at the moment, kept for reference
 OPERATORS = ["√", "+", "-", "*", "/", "^", "!", "Fib"]
@@ -41,7 +42,7 @@ def test_binary(array):
     """ @brief check if input is a valid binary expression
 
     `A op B` format
-    @param array field of split elements from calculator input
+    @param array parsed array split by operators using ::split_elements
     @return True if valid binary expression, False otherwise
     """
     # Can't possibly be `A op B` when array has different length
@@ -67,7 +68,7 @@ def test_prefix(array):
     """ @brief check if input is a valid prefix expression
 
     `op A` format
-    @param array field of split elements from calculator input
+    @param array parsed array split by operators using ::split_elements
     @return True if valid prefix expression, False otherwise
     """
 
@@ -90,7 +91,7 @@ def test_postfix(array):
     """ @brief check if input is a valid postfix expression
 
     `A op` format
-    @param array field of split elements from calculator input
+    @param array parsed array split by operators using ::split_elements
     @return True if valid postfix expression, False otherwise
     """
 
@@ -113,7 +114,7 @@ def test_function(array):
     """ @brief check if input is a valid function expression
 
     `f(A)` format
-    @param array field of split elements from calculator input
+    @param array parsed array split by operators using ::split_elements
     @return True if valid function expression, False otherwise
     """
 
@@ -140,7 +141,7 @@ def valid_expression(array):
     """ @brief Check if valid and computable expression in on of the
     supported formats
 
-    Expects array to be split by operators such as done in ::check_valid.
+    Expects array to be split by operators by the ::split_elements function
 
     @param array field of split elements from calculator input
     @return True if valid expression, False otherwise
@@ -164,6 +165,18 @@ def valid_expression(array):
     return False
 
 
+def split_elements(text):
+    """ @brief Split elements by operators into array
+
+    Also removes whitespace.
+    @param text input which to split
+    @return array of strings split accordingly
+    """
+    split = regex.split(r"(\+|-|\*|\/|!|\^|√|\(|\)| )", text)
+    split = list(filter(lambda x: len(x) > 0, split))
+    return split
+
+
 def check_valid(text):
     """ @brief check if a valid (computable) input
     @param text input from the calculator entry
@@ -172,8 +185,7 @@ def check_valid(text):
     op_count = 0  # Number of operators
 
     # Split by whitespaces and all possbile operators
-    split = regex.split(r"(\+|-|\*|\/|!|\^|√|\(|\)| )", text)
-    split = list(filter(lambda x: len(x) > 0, split))
+    split = split_elements(text)
 
     # empty is valid
     if len(split) == 0:
@@ -198,3 +210,87 @@ def check_valid(text):
         return False
 
     return valid_expression(split)
+
+
+def compute_binary(array):
+    """ @brief Computes a binary operator expression
+
+    @param array parsed array split by operators using ::split_elements
+    @return string the computed expression
+    """
+    num1 = array[0]
+    operator = array[1]
+    num2 = array[2]
+
+    if operator == "+":
+        return str(m.add(float(num1), float(num2)))
+    elif operator == "-":
+        return str(m.sub(float(num1), float(num2)))
+    elif operator == "*":
+        return str(m.multiply(float(num1), float(num2)))
+    elif operator == "/":
+        return str(m.divide(float(num1), float(num2)))
+    elif operator == "^":
+        return str(m.exp(float(num1), int(num2)))
+    else:  # root
+        return str(m.sqrt(float(num2), int(num1)))
+
+
+def compute_prefix(array):
+    """ @brief Computes a prefix operator expression
+
+    @param array parsed array split by operators using ::split_elements
+    @return string the computed expression
+    """
+    num1 = array[1]
+    # The only prefix operator is sqrt at the moment
+    return str(m.sqrt(float(num1), 2))
+
+def compute_postfix(array):
+    """ @brief Computes a postfix operator expression
+
+    @param array parsed array split by operators using ::split_elements
+    @return string the computed expression
+    """
+    num1 = array[0]
+    # The only postfix operator is ! at the moment
+    return str(m.factorial(num1))
+
+
+def compute_function(array):
+    """ @brief Computes a function expression
+
+    @param array parsed array split by operators using ::split_elements
+    @return string the computed expression
+    """
+    num1 = array[2]
+    # The only function is Fib at the moment
+    # TODO: Change when Fib function is done
+    return array[2]
+
+
+def compute_solution(text):
+    """ @brief Compute a solution of the expression in text
+
+    Must be in a valid format, can be checked by ::check_valid.
+    This function does no check the format itself, if in an invalid format
+    it will return what it got as a paremeter.
+
+    @param text string containing the expression to be computed
+    @return the numeric result as a string
+    """
+
+    text = split_elements(text)
+    if test_binary(text):
+        return compute_binary(text)
+
+    if test_prefix(text):
+        return compute_prefix(text)
+
+    if test_postfix(text):
+        return compute_postfix(text)
+
+    if test_function(text):
+        return compute_function(text)
+
+    return text
