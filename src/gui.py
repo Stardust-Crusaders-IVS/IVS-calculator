@@ -16,7 +16,7 @@ def main():
     builder.add_from_file("../gui/prototype1.glade")
     window_main = builder.get_object("window1")
     window_main.set_title("Kalkulačka")
-    icon = GdkPixbuf.Pixbuf.new_from_file("../gui/icon.jpeg")
+    icon = GdkPixbuf.Pixbuf.new_from_file("../gui/icon_small.jpeg")
     window_main.set_icon(icon)
     change_fonts(builder, "")
     connect_signals(builder)
