@@ -1,13 +1,13 @@
 """ @package gui
-    @author: Tadeas Vintrlik <xvintr04>
-    Documentation for main GUI package
+@author: Tadeas Vintrlik <xvintr04>
+Documentation for main GUI package
 """
 from gi.repository import Gtk, Gdk, GdkPixbuf, Pango
 
 
 def main():
     """ @brief Main gui function
-        Start the cycle for gui drawing
+    Start the cycle for gui drawing
     """
     builder = Gtk.Builder()
     builder.add_from_file("../gui/prototype1.glade")
@@ -24,9 +24,9 @@ def main():
 
 def user_input(self, entry, builder):
     """ @brief inputs the desired symbol into the entry
-        @param self the caller of the function
-        @param entry the entry where to add the new symbol
-        @param builder builder class for making gui from glade
+    @param self the caller of the function
+    @param entry the entry where to add the new symbol
+    @param builder builder class for making gui from glade
     """
     label = self.get_label()
     if "√" in label:
@@ -47,8 +47,8 @@ def user_input(self, entry, builder):
 
 def user_result(self, entry):
     """ @brief calculates the result from the entry
-        @param *self the caller of the function
-        @param entry the entry where to show the result
+    @param *self the caller of the function
+    @param entry the entry where to show the result
     """
     del self  # Unused for now
     entry.set_text("This should show the result")
@@ -57,8 +57,8 @@ def user_result(self, entry):
 
 def clear(self, entry, builder):
     """ @brief clears the entry
-        @param *self the caller of the function
-        @param entry the entry which to clear
+    @param *self the caller of the function
+    @param entry the entry which to clear
     """
     del self  # Unused for now
     entry.set_text("")
@@ -67,7 +67,7 @@ def clear(self, entry, builder):
 
 def change_fonts(builder, font_param):
     """ @brief change fonts of all elements
-        @param builder builder class for making gui from glade
+    @param builder builder class for making gui from glade
     """
     if not font_param:
         font_param = 'Sans Bold 18'
@@ -81,10 +81,10 @@ def change_fonts(builder, font_param):
 
 def on_key_pressed(widget, event, entry, builder):
     """ @brief handler for key-press-event
-        @param widget widget active when key press occured
-        @param event type of event that occured
-        @param entry entry filed to modify
-        @param builder builder class for making gui from glade
+    @param widget widget active when key press occured
+    @param event type of event that occured
+    @param entry entry filed to modify
+    @param builder builder class for making gui from glade
     """
     validate_entry(entry, builder)
     if event.keyval == Gdk.KEY_Return or chr(event.keyval) == "=":
@@ -93,9 +93,9 @@ def on_key_pressed(widget, event, entry, builder):
 
 def validate_entry(entry, builder):
     """ @brief checks if the entry is valid
-        @param self the caller of the function
-        @param entry the entry where to add the new symbol
-        @param builder builder class for making gui from glade
+    @param self the caller of the function
+    @param entry the entry where to add the new symbol
+    @param builder builder class for making gui from glade
     """
     # TODO: The condition should test if input can be calculated
     if len(entry.get_text()) > 3:
@@ -106,7 +106,7 @@ def validate_entry(entry, builder):
 
 def connect_signals(builder):
     """ @brief connect signals to all buttons
-        @param builder builder class for making gui from glade
+    @param builder builder class for making gui from glade
     """
     connect_signal_grid(builder, 'numbers', 4, 3)
     connect_signal_grid(builder, 'operators', 5, 2)
@@ -126,8 +126,8 @@ def connect_signals(builder):
 
 def font_select(self, builder):
     """ @brief open font select window
-        @param self the caller of the function
-        @param builder builder class for making gui from glade
+    @param self the caller of the function
+    @param builder builder class for making gui from glade
     """
     del self
     dialog = Gtk.FontSelectionDialog("Prosím Vyberte Font")
@@ -141,8 +141,8 @@ def font_select(self, builder):
 
 def about_show(self):
     """ @brief open about window
-        @param self the caller of the function
-        @param builder builder class for making gui from glade
+    @param self the caller of the function
+    @param builder builder class for making gui from glade
     """
     del self
     about = Gtk.AboutDialog("O aplikaci")
@@ -165,10 +165,10 @@ def about_show(self):
 
 def connect_signal_grid(builder, grid_name, rows, columns):
     """ @brief connect all buttons in grid to callbacks
-        @param builder builder class for making gui from glade
-        @param grid_name name of the grid to use
-        @param rows number of rows of the grid
-        @param columns number of coulmns of the grid
+    @param builder builder class for making gui from glade
+    @param grid_name name of the grid to use
+    @param rows number of rows of the grid
+    @param columns number of coulmns of the grid
     """
     exceptions = ["=", "REM", "CLR"]
     entry = builder.get_object("entry")
@@ -183,12 +183,12 @@ def connect_signal_grid(builder, grid_name, rows, columns):
 
 def change_font_grid(builder, grid_name, font, rows, columns):
     """ @brief change fonts in a grid
-        Change fonts of all children in the GtkGrid element
-        @param builder builder class for making gui from glade
-        @param grid_name name of the grid to use
-        @param font font to change it to
-        @param rows number of rows of the grid
-        @param columns number of coulmns of the grid
+    Change fonts of all children in the GtkGrid element
+    @param builder builder class for making gui from glade
+    @param grid_name name of the grid to use
+    @param font font to change it to
+    @param rows number of rows of the grid
+    @param columns number of coulmns of the grid
     """
     grid = builder.get_object(grid_name)
     for i in range(0, columns):
