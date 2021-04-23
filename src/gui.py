@@ -132,7 +132,7 @@ def connect_signals(builder):
     builder.get_object('equals').connect("clicked", user_result, entry)
     builder.get_object('clr').connect("clicked", clear, entry, builder)
     window = builder.get_object("window1")
-    window.connect("key-press-event", on_key_pressed, entry, builder)
+    window.connect("key-press-event", on_key_pressed, entry)
     entry.connect_after("insert-text", validate_entry_insert, builder)
     entry.connect_after("delete-text", validate_entry_delete, builder)
     window.connect("destroy", Gtk.main_quit)
