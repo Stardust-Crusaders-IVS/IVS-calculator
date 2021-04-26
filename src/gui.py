@@ -48,6 +48,8 @@ def user_input(self, entry):
     # if nth root move cursor to the begining for easier editing
     if label == "n√":
         entry.set_position(0)
+    else:
+        entry.set_position(len(text)+len(label))
 
 
 def user_result(self, entry):
