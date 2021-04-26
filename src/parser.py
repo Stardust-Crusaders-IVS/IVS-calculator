@@ -252,7 +252,7 @@ def compute_postfix(array):
     """
     num1 = array[0]
     # The only postfix operator is ! at the moment
-    return str(m.factorial(num1))
+    return str(m.factorial(int(num1)))
 
 
 def compute_function(array):
@@ -291,4 +291,7 @@ def compute_solution(text):
     if test_function(array):
         return compute_function(array)
 
-    return array[0]
+    str = ""
+    for elem in array:
+        str += elem
+    return str
