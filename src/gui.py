@@ -131,7 +131,7 @@ def connect_signals(builder):
     connect_signal_grid(builder, 'operators', 5, 2)
     entry = builder.get_object('entry')
     builder.get_object('equals').connect("clicked", user_result, entry)
-    builder.get_object('clr').connect("clicked", clear, entry, builder)
+    builder.get_object('clr').connect("clicked", clear, entry)
     window = builder.get_object("window1")
     window.connect("key-press-event", on_key_pressed, entry)
     entry.connect_after("insert-text", validate_entry_insert, builder)
