@@ -1,6 +1,6 @@
 """ @package math_library_tests
     @author: Vojtech Fiala <xfiala61>
-Documentation for math library tests.
+    @brief Documentation for math library tests.
 """
 import unittest
 from math_library import add, sub, multiply, divide, InvalidSystem

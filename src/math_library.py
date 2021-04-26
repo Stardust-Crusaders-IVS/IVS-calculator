@@ -1,6 +1,6 @@
 """ @package math_library
     @author: Vojtech Fiala <xfiala61>
-Documentation for math library.
+    @brief Documentation for math library.
 """
 
 ###################################################
