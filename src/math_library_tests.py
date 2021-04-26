@@ -3,8 +3,8 @@
     @brief Documentation for math library tests.
 """
 import unittest
-from math_library import add, sub, multiply, divide, InvalidSystem
-from math_library import exp, sqrt, factorial, convert, convert_reverse
+from math_library import add, sub, multiply, divide
+from math_library import exp, sqrt, factorial, fibonacci
 
 class TestStringMethods(unittest.TestCase):
     """ @brief Test class to run the tests.
@@ -122,7 +122,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(fibonacci(50), 12586269025)
         self.assertRaises(ValueError, fibonacci, -5)
         self.assertRaises(ValueError, fibonacci, 0.5)
-        
+
 
 if __name__ == '__main__':
     unittest.main()
