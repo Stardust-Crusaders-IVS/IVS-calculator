@@ -106,44 +106,23 @@ class TestStringMethods(unittest.TestCase):
         self.assertRaises(ValueError, factorial, -1)
         self.assertRaises(ValueError, factorial, 5.5)
 
-    def test_convert(self):
-        """ @brief Method to test the number system convertor.
+    def test_fibonacci(self):
+        """ @brief Method to test the fibonacci sequence calculator.
             @param self Self object.
-        Supports conversion from decimal system to any given system (2-16).
-        Supports reverse conversion from any given system (2-16) to decimal.
+        The operand can be any natural number.
         """
-        self.assertEqual(convert(9, 2), "1001")
-        self.assertEqual(convert(0, 2), "0")
-        self.assertEqual(convert(16, 2), "10000")
-        self.assertEqual(convert(16.5, 2, 5), "10000.10000")
-        self.assertEqual(convert(16.5, 2), "10000.10000")
-        self.assertEqual(convert(16.5, 2, 1), "10000.1")
-        self.assertEqual(convert(16.5, 2, 0), "10000")
-        self.assertEqual(convert(0.3, 2, 10), "0.0100110011")
-        self.assertEqual(convert(4, 4), "10")
-        self.assertEqual(convert(13, 16), "D")
-        self.assertEqual(convert(57, 16), "39")
-        self.assertEqual(convert(158, 16), "9E")
-        self.assertEqual(convert(158.11, 16), "9E.1C28F")
-        self.assertEqual(convert(158.11, 16, 10), "9E.1C28F5C28F")
-        self.assertEqual(convert(158., 16, 5), "9E.00000")
 
-        self.assertRaises(InvalidSystem, convert_reverse, 9, 2)
-        self.assertRaises(InvalidSystem, convert_reverse, 'B', 10)
-        self.assertRaises(InvalidSystem, convert_reverse, 'F', 13)
-        self.assertRaises(InvalidSystem, convert_reverse, 'G', 13)
-        self.assertRaises(InvalidSystem, convert_reverse, 'G', 13)
-        self.assertEqual(convert_reverse(0.5, 10), 0.5)
-        self.assertEqual(convert_reverse(.5, 10), 0.5)
-        self.assertEqual(convert_reverse(4556, 10), 4556)
-        self.assertEqual(convert_reverse(4556.0, 10), 4556)
-        self.assertEqual(convert_reverse(4556., 10), 4556)
-        self.assertEqual(
-            convert_reverse(4556568465468, 10), 4556568465468)
-        self.assertEqual(
-            convert_reverse(6545618.654564561, 10), 6545618.654564561)
-        self.assertEqual(convert_reverse('345A.85A', 16), 13402.52197265625)
-        self.assertEqual(convert_reverse('345A.85A', 11), 4542.7761081893313298272)
+        self.assertEqual(fibonacci(0), 0)
+        self.assertEqual(fibonacci(1), 1)
+        self.assertEqual(fibonacci(2), 1)
+        self.assertEqual(fibonacci(3), 2)
+        self.assertEqual(fibonacci(4), 3)
+        self.assertEqual(fibonacci(5), 5)
+        self.assertEqual(fibonacci(11), 89)
+        self.assertEqual(fibonacci(50), 12586269025)
+        self.assertRaises(ValueError, fibonacci, -5)
+        self.assertRaises(ValueError, fibonacci, 0.5)
+        
 
 if __name__ == '__main__':
     unittest.main()
