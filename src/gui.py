@@ -64,7 +64,6 @@ def clear(self, entry):
     """
     del self  # Unused for now
     entry.set_text("")
-    # validate_entry(entry, "", builder)
 
 
 def change_fonts(builder, font_param):
@@ -200,8 +199,6 @@ def connect_signal_grid(builder, grid_name, rows, columns):
             if button.get_label() in exceptions:
                 continue
             button.connect("clicked", user_input, entry)
-            # button.connect_after("clicked", validate_entry, entry, builder)
-
 
 def change_font_grid(builder, grid_name, font, rows, columns):
     """ @brief change fonts in a grid
