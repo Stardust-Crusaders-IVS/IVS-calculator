@@ -32,18 +32,22 @@ def user_input(self, entry):
     @param entry the entry where to add the new symbol
     """
     label = self.get_label()
+    cursor = entry.get_position()
+    text = entry.get_text()
+    text_half1 = text[:cursor]
+    print(text_half1)
+    text_half2 = text[cursor:]
+    print(text_half2)
     if "√" in label:
-        entry.set_text(label + entry.get_text())
+        entry.set_text(label + text)
     elif label == "Fib":
         entry.set_text(label + "(" + entry.get_text() + ")")
     else:
-        entry.set_text(entry.get_text() + label)
+        entry.set_text(text_half1 + label + text_half2)
 
     # if nth root move cursor to the begining for easier editing
     if label == "n√":
         entry.set_position(0)
-    else:
-        entry.set_position(len(entry.get_text()))
 
 
 def user_result(self, entry):
