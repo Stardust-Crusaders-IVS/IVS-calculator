@@ -16,7 +16,7 @@ doc:
 	# TODO
 
 run:
-	python ./src/gui.py
+	@cd ./src; python ./gui.py 2>/dev/null
 
 profile:
 	# TODO
