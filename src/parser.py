@@ -5,7 +5,7 @@
 A very simple parser that serves
 as an interface between the ::gui and ::math_library
 """
-import regex
+import re
 import math_library as m
 
 ## List of all the possible operators, unsued at the moment, kept for reference
@@ -179,7 +179,7 @@ def split_elements(text):
     @param text input which to split
     @return array of strings split accordingly
     """
-    split = regex.split(r"(\+|-|\*|\/|!|\^|√|\(|\)| )", text)
+    split = re.split(r"(\+|-|\*|\/|!|\^|√|\(|\)| )", text)
     return list(filter(lambda x: x != " " and x != "", split))
 
 def check_valid(text):
