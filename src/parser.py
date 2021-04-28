@@ -227,12 +227,15 @@ def compute_binary(array):
     elif operator == "*":
         return str(m.multiply(float(num1), float(num2)))
     elif operator == "/":
-        return str(m.divide(float(num1), float(num2)))
+        try:
+            return str(m.divide(float(num1), float(num2)))
+        except:
+            return "Chyba: nelze dělit nulou"
     elif operator == "^":
         try:
             return str(m.exp(float(num1), int(num2)))
         except:
-            return "Přetečení - příliš velké číslo"
+            return "Přetečení: výsledek je příliš velké číslo"
     else:  # root
         return str(m.sqrt(float(num2), int(num1)))
 
