@@ -177,6 +177,9 @@ def valid_expression(array):
 
 def join_number_operator(arr):
     """ @brief Try join minus or plus with numbers if not an operator
+    @todo This function is terribly inefficient, this might not be a worry
+    since it is run only in user time, so it is not noticable
+
     @param arr array of split input
     @return array with some elements joined
     """
