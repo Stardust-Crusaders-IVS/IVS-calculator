@@ -137,6 +137,10 @@ def test_function(array):
     if not is_int_float(array[2]):
         return False
 
+    # If a floating point number
+    if "." in array[2]:
+        return False
+
     # Check if second and fourth are parantheses
     if not (array[1] == "(" and array[3] == ")"):
         return False
