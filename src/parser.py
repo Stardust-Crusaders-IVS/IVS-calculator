@@ -248,7 +248,10 @@ def compute_binary(array):
             return str(m.multiply(int(num1), int(num2)))
     elif operator == "/":
         try:
-            return str(m.divide(int(num1), int(num2)))
+            if "." in num1 or "." in num2:
+                return str(m.divide(float(num1), float(num2)))
+            else:
+                return str(m.divide(int(num1), int(num2)))
         except ZeroDivisionError:
             return "Chyba: nelze dělit nulou"
     elif operator == "^":
@@ -258,7 +261,6 @@ def compute_binary(array):
             return str(m.sqrt(float(num2), int(num1)))
         except ZeroDivisionError:
             return "Chyba: nultá odmoncina čísla není definována."
-
 
 
 def compute_prefix(array):
