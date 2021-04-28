@@ -232,20 +232,30 @@ def compute_binary(array):
     num2 = array[2]
 
     if operator == "+":
-        return str(m.add(float(num1), float(num2)))
+        if "." in num1 or "." in num2:
+            return str(m.add(float(num1), float(num2)))
+        else:
+            return str(m.add(int(num1), int(num2)))
     elif operator == "-":
-        return str(m.sub(float(num1), float(num2)))
+        if "." in num1 or "." in num2:
+            return str(m.sub(float(num1), float(num2)))
+        else:
+            return str(m.sub(int(num1), int(num2)))
     elif operator == "*":
-        return str(m.multiply(float(num1), float(num2)))
+        if "." in num1 or "." in num2:
+            return str(m.multiply(float(num1), float(num2)))
+        else:
+            return str(m.multiply(int(num1), int(num2)))
     elif operator == "/":
         try:
-            return str(m.divide(float(num1), float(num2)))
+            return str(m.divide(int(num1), int(num2)))
         except:
             return "Chyba: nelze dělit nulou"
     elif operator == "^":
             return str(m.exp(int(num1), int(num2)))
     else:  # root
         return str(m.sqrt(float(num2), int(num1)))
+
 
 
 def compute_prefix(array):
