@@ -260,7 +260,7 @@ def compute_binary(array):
         try:
             return str(m.sqrt(float(num2), int(num1)))
         except ZeroDivisionError:
-            return "Chyba: nultá odmoncina čísla není definována."
+            return "Chyba: nultou odmocninu nelze"
 
 
 def compute_prefix(array):
