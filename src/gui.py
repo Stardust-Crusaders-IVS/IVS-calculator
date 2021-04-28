@@ -16,7 +16,7 @@ def main():
     builder = Gtk.Builder()
     builder.add_from_file("../gui/prototype1.glade")
     window_main = builder.get_object("window1")
-    window_main.set_title("Kalkulačka")
+    window_main.set_title("BizarreCalc")
     icon = GdkPixbuf.Pixbuf.new_from_file("../gui/icon_small.jpeg")
     window_main.set_icon(icon)
     change_fonts(builder, "")
@@ -180,9 +180,9 @@ def about_show(self):
     about = Gtk.AboutDialog("O aplikaci")
     icon = GdkPixbuf.Pixbuf.new_from_file("../gui/icon.jpeg")
     about.set_logo(icon)
-    about.set_comments("Jednoduchá aplikace kalkulačky.")
+    about.set_comments("Bizarní dobrodružství s kalkulačkou.")
     about.set_version("1.0")
-    about.set_program_name("Kalkulačka")
+    about.set_program_name("BizzareCalc")
     about.set_license("Program je pod GNU GPL v3 licencí.\n"
                       "Kompletní znění licence je součástí zdrojových souborů"
                       ", popřípadě zde:\n"
