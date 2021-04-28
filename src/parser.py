@@ -94,7 +94,6 @@ def test_postfix(array):
     @param array parsed array split by operators using ::split_elements
     @return True if valid postfix expression, False otherwise
     """
-
     # Can't possibly be `A op` when array has different length
     if len(array) != 2:
         return False
@@ -105,6 +104,10 @@ def test_postfix(array):
 
     # Check if second a number
     if not is_int_float(array[0]):
+        return False
+
+    # if floating point number
+    if "." in array[0]:
         return False
 
     return True
