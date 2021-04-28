@@ -36,16 +36,22 @@ def user_input(self, entry):
     text = entry.get_text()
     text_half1 = text[:cursor]
     text_half2 = text[cursor:]
-    if "√" in label:
+    if "n√" in label:
+        entry.set_text("2√" + text)
+    elif "√" in label:
         entry.set_text(label + text)
     elif label == "Fib":
-        entry.set_text(label + "(" + entry.get_text() + ")")
+        # change it for setting cursor later
+        text = label + "(" + entry.get_text() + ")"
+        entry.set_text(text)
     else:
         entry.set_text(text_half1 + label + text_half2)
 
     # if nth root move cursor to the begining for easier editing
     if label == "n√":
-        entry.set_position(0)
+        entry.set_position(1)
+    elif label == "Fib":
+        entry.set_position(text.index("(")+1)
     else:
         entry.set_position(len(text)+len(label))
 

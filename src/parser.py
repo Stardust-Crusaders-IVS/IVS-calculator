@@ -5,7 +5,7 @@
 A very simple parser that serves
 as an interface between the ::gui and ::math_library
 """
-import regex
+import re
 import math_library as m
 
 ## List of all the possible operators, unsued at the moment, kept for reference
@@ -61,6 +61,10 @@ def test_binary(array):
     if not is_int_float(array[2]):
         return False
 
+    # check if number is an integer for power
+    if array[1] == "^" and ("." in array[0] or "." in array[2]):
+        return False
+
     return True
 
 
@@ -94,7 +98,6 @@ def test_postfix(array):
     @param array parsed array split by operators using ::split_elements
     @return True if valid postfix expression, False otherwise
     """
-
     # Can't possibly be `A op` when array has different length
     if len(array) != 2:
         return False
@@ -105,6 +108,10 @@ def test_postfix(array):
 
     # Check if second a number
     if not is_int_float(array[0]):
+        return False
+
+    # if floating point number
+    if "." in array[0]:
         return False
 
     return True
@@ -128,6 +135,10 @@ def test_function(array):
 
     # Check if third a number
     if not is_int_float(array[2]):
+        return False
+
+    # If a floating point number
+    if "." in array[2]:
         return False
 
     # Check if second and fourth are parantheses
@@ -172,7 +183,7 @@ def split_elements(text):
     @param text input which to split
     @return array of strings split accordingly
     """
-    split = regex.split(r"(\+|-|\*|\/|!|\^|√|\(|\)| )", text)
+    split = re.split(r"(\+|-|\*|\/|!|\^|√|\(|\)| )", text)
     return list(filter(lambda x: x != " " and x != "", split))
 
 def check_valid(text):
@@ -221,23 +232,35 @@ def compute_binary(array):
     num2 = array[2]
 
     if operator == "+":
-        return str(m.add(float(num1), float(num2)))
+        if "." in num1 or "." in num2:
+            return str(m.add(float(num1), float(num2)))
+        else:
+            return str(m.add(int(num1), int(num2)))
     elif operator == "-":
-        return str(m.sub(float(num1), float(num2)))
+        if "." in num1 or "." in num2:
+            return str(m.sub(float(num1), float(num2)))
+        else:
+            return str(m.sub(int(num1), int(num2)))
     elif operator == "*":
-        return str(m.multiply(float(num1), float(num2)))
+        if "." in num1 or "." in num2:
+            return str(m.multiply(float(num1), float(num2)))
+        else:
+            return str(m.multiply(int(num1), int(num2)))
     elif operator == "/":
         try:
-            return str(m.divide(float(num1), float(num2)))
-        except:
+            if "." in num1 or "." in num2:
+                return str(m.divide(float(num1), float(num2)))
+            else:
+                return str(m.divide(int(num1), int(num2)))
+        except ZeroDivisionError:
             return "Chyba: nelze dělit nulou"
     elif operator == "^":
+            return str(m.exp(int(num1), int(num2)))
+    else: # root
         try:
-            return str(m.exp(float(num1), int(num2)))
-        except:
-            return "Přetečení: výsledek je příliš velké číslo"
-    else:  # root
-        return str(m.sqrt(float(num2), int(num1)))
+            return str(m.sqrt(float(num2), int(num1)))
+        except ZeroDivisionError:
+            return "Chyba: nultá odmoncina čísla není definována."
 
 
 def compute_prefix(array):
