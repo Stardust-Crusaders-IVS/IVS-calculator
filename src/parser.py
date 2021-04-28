@@ -61,6 +61,10 @@ def test_binary(array):
     if not is_int_float(array[2]):
         return False
 
+    # check if number is an integer for power
+    if array[1] == "^" and ("." in array[0] or "." in array[2]):
+        return False
+
     return True
 
 
@@ -235,10 +239,7 @@ def compute_binary(array):
         except:
             return "Chyba: nelze dělit nulou"
     elif operator == "^":
-        try:
-            return str(m.exp(float(num1), int(num2)))
-        except:
-            return "Přetečení: výsledek je příliš velké číslo"
+            return str(m.exp(int(num1), int(num2)))
     else:  # root
         return str(m.sqrt(float(num2), int(num1)))
 
