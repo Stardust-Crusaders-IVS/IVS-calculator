@@ -265,9 +265,7 @@ def compute_function(array):
     @return string the computed expression
     """
     num1 = array[2]
-    # The only function is Fib at the moment
-    # TODO: Change when Fib function is done
-    return array[2]
+    return str(m.fibonacci(int(num1)))
 
 
 def compute_solution(text):
