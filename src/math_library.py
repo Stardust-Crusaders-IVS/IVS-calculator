@@ -62,11 +62,15 @@ def sqrt(number, number2):
     """ @brief Calculate root value of a number.
         @param number Base number.
         @param number2 The n-th root.
-    The base number must be a positive integer or 0.
+    The base number must be a positive integer or 0 when number2 is even.
     """
-    if number < 0 or isinstance(number2, float):
+    if ((number < 0 and number2 % 2 == 0) or isinstance(number2, float)):
         raise ValueError
-    return pow(number, 1/number2)
+    # When odd root of negative number
+    if number2 % 2 != 0 and number < 0:
+        return -pow(-number, 1/number2)
+    else:
+        return pow(number, 1/number2)
 
 def fibonacci(number):
     """ @brief Calculate the corresponding number of fibbonaci sequence at index.
