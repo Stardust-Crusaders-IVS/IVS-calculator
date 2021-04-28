@@ -88,6 +88,8 @@ def change_fonts(builder, font_param):
     entry = builder.get_object('entry')
     entry.modify_font(font)
     entry.set_alignment(1)
+    invalid_notif = builder.get_object('invalid-notif')
+    invalid_notif.modify_font(font)
 
 
 def on_key_pressed(widget, event, entry):
