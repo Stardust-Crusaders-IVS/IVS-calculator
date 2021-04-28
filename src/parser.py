@@ -299,6 +299,8 @@ def compute_binary(array):
             return str(m.sqrt(float(num2), int(num1)))
         except ZeroDivisionError:
             return "Chyba: nultou odmocninu nelze"
+        except ValueError:
+            return "Chyba: odmocnina ze záporných"
 
 
 def compute_prefix(array):
@@ -309,7 +311,10 @@ def compute_prefix(array):
     """
     num1 = array[1]
     # The only prefix operator is sqrt at the moment
-    return str(m.sqrt(float(num1), 2))
+    try:
+        return str(m.sqrt(float(num1), 2))
+    except ValueError:
+        return "Chyba: odmocnina ze záporných"
 
 def compute_postfix(array):
     """ @brief Computes a postfix operator expression
@@ -319,7 +324,10 @@ def compute_postfix(array):
     """
     num1 = array[0]
     # The only postfix operator is ! at the moment
-    return str(m.factorial(int(num1)))
+    try:
+        return str(m.factorial(int(num1)))
+    except ValueError:
+        return "Chyba: faktoriál ze záporných"
 
 
 def compute_function(array):
@@ -329,7 +337,10 @@ def compute_function(array):
     @return string the computed expression
     """
     num1 = array[2]
-    return str(m.fibonacci(int(num1)))
+    try:
+        return str(m.fibonacci(int(num1)))
+    except:
+        return "Chyba: Fibonacci ze záporných"
 
 
 def compute_solution(text):
