@@ -51,7 +51,7 @@ def user_input(self, entry):
     if label == "n√":
         entry.set_position(1)
     elif label == "Fib":
-        entry.set_position(text.index("(")+1)
+        entry.set_position(text.index(")"))
     else:
         entry.set_position(len(text)+len(label))
 
