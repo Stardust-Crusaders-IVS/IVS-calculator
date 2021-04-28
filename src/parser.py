@@ -175,6 +175,39 @@ def valid_expression(array):
 
     return False
 
+def join_number_operator(arr):
+    """ @brief Try join minus or plus with numbers if not an operator
+    @param arr array of split input
+    @return array with some elements joined
+    """
+
+    operators = 0
+    for elem in arr:
+        if elem in OPERATORS:
+            operators += 1
+
+    shortables = ["+", "-"]
+    pop_indexes = []
+    for i in range(len(arr)-1):
+        # if i is - or + i+1 is a number and either there are still operators left
+        # or is just in format -number or +number
+        if arr[i] in shortables and is_int_float(arr[i+1]) and (operators > 1 or len(arr) < 3):
+            pop_indexes.append(i)
+            operators -= 1
+            if arr[i] == "-":
+                if "." in arr[i+1]:
+                    arr[i+1] = str(-float(arr[i+1]))
+                else:
+                    arr[i+1] = str(-int(arr[i+1]))
+                
+
+    new = []
+    for i in range(len(arr)):
+        if i not in pop_indexes:
+            new.append(arr[i])
+
+    return new
+
 
 def split_elements(text):
     """ @brief Split elements by operators into array
@@ -199,6 +232,8 @@ def check_valid(text):
     # empty is valid
     if len(split) == 0:
         return True
+
+    split = join_number_operator(split)
 
     # If just a number alone
     if len(split) == 1:
@@ -306,6 +341,7 @@ def compute_solution(text):
     """
 
     array = split_elements(text)
+    array = join_number_operator(array)
     if test_binary(array):
         return compute_binary(array)
 
