@@ -179,7 +179,7 @@
             <property name="label-xalign">0</property>
             <property name="shadow-type">none</property>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="invalid-notif">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Vstup není platný</property>
