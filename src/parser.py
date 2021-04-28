@@ -249,12 +249,15 @@ def compute_binary(array):
     elif operator == "/":
         try:
             return str(m.divide(int(num1), int(num2)))
-        except:
+        except ZeroDivisionError:
             return "Chyba: nelze dělit nulou"
     elif operator == "^":
             return str(m.exp(int(num1), int(num2)))
-    else:  # root
-        return str(m.sqrt(float(num2), int(num1)))
+    else: # root
+        try:
+            return str(m.sqrt(float(num2), int(num1)))
+        except ZeroDivisionError:
+            return "Chyba: nultá odmoncina čísla není definována."
 
 
 
