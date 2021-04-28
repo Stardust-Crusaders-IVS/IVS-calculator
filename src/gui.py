@@ -53,7 +53,7 @@ def user_input(self, entry):
     elif label == "Fib":
         entry.set_position(text.index(")"))
     else:
-        entry.set_position(len(text)+len(label))
+        entry.set_position(cursor + 1)
 
 
 def user_result(self, entry):
