@@ -35,9 +35,7 @@ def user_input(self, entry):
     cursor = entry.get_position()
     text = entry.get_text()
     text_half1 = text[:cursor]
-    print(text_half1)
     text_half2 = text[cursor:]
-    print(text_half2)
     if "√" in label:
         entry.set_text(label + text)
     elif label == "Fib":
