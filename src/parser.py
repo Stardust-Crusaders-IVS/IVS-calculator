@@ -175,6 +175,7 @@ def valid_expression(array):
 
     return False
 
+
 def join_number_operator(arr):
     """ @brief Try join minus or plus with numbers if not an operator
     @todo This function is terribly inefficient, this might not be a worry
@@ -192,9 +193,10 @@ def join_number_operator(arr):
     shortables = ["+", "-"]
     pop_indexes = []
     for i in range(len(arr)-1):
-        # if i is - or + i+1 is a number and either there are still operators left
-        # or is just in format -number or +number
-        if arr[i] in shortables and is_int_float(arr[i+1]) and (operators > 1 or len(arr) < 3):
+        # if i is - or + i+1 is a number and either there are still operators
+        # left or is just in format -number or +number
+        if arr[i] in shortables and is_int_float(arr[i+1])\
+                and (operators > 1 or len(arr) < 3):
             pop_indexes.append(i)
             operators -= 1
             if arr[i] == "-":
@@ -202,7 +204,6 @@ def join_number_operator(arr):
                     arr[i+1] = str(-float(arr[i+1]))
                 else:
                     arr[i+1] = str(-int(arr[i+1]))
-                
 
     new = []
     for i in range(len(arr)):
@@ -221,6 +222,7 @@ def split_elements(text):
     """
     split = re.split(r"(\+|-|\*|\/|!|\^|√|\(|\)| )", text)
     return list(filter(lambda x: x != " " and x != "", split))
+
 
 def check_valid(text):
     """ @brief check if a valid (computable) input
@@ -297,7 +299,7 @@ def compute_binary(array):
             return str(m.exp(int(num1), int(num2)))
         except ValueError:
             return "Chyba: záporná mocnina"
-    else: # root
+    else:  # root
         try:
             return str(m.sqrt(float(num2), int(num1)))
         except ZeroDivisionError:
@@ -318,6 +320,7 @@ def compute_prefix(array):
         return str(m.sqrt(float(num1), 2))
     except ValueError:
         return "Chyba: odmocnina ze záporných"
+
 
 def compute_postfix(array):
     """ @brief Computes a postfix operator expression
@@ -342,7 +345,7 @@ def compute_function(array):
     num1 = array[2]
     try:
         return str(m.fibonacci(int(num1)))
-    except:
+    except ValueError:
         return "Chyba: Fibonacci ze záporných"
 
 
@@ -371,7 +374,7 @@ def compute_solution(text):
     if test_function(array):
         return compute_function(array)
 
-    str = ""
+    string = ""
     for elem in array:
-        str += elem
-    return str
+        string += elem
+    return string

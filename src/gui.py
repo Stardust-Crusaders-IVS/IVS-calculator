@@ -102,12 +102,13 @@ def on_key_pressed(widget, event, entry):
     if event.keyval == Gdk.KEY_Return or chr(event.keyval) == "=":
         user_result(widget, entry)
 
-def on_button_pressed(widget, event, builder):
+
+def on_button_pressed(widget, event):
     """ @brief handler for button-press-event
     @param widget widget active when key press occured
     @param event type of event that occured
-    @param builder builder class for making gui from glade
     """
+    del widget
     if event.button == 2:
         os.system("xdg-open ../gui/manual.png")
 
@@ -208,6 +209,7 @@ def about_show(self):
     if response == -4:
         about.close()
 
+
 def manual_show(self):
     """ @brief open manual
     @param self the caller of the function
@@ -232,6 +234,7 @@ def connect_signal_grid(builder, grid_name, rows, columns):
             if button.get_label() in exceptions:
                 continue
             button.connect("clicked", user_input, entry)
+
 
 def change_font_grid(builder, grid_name, font, rows, columns):
     """ @brief change fonts in a grid
