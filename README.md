@@ -1,9 +1,9 @@
 Prostředí:
 -----------
 
-Ubuntu 20.4 64bit - referencni virtualni stroj
+Ubuntu 20.04 64bit - Referenční virtuální stroj
 
-Autori:
+Autoři:
 -----------
 
 Stardust Crusaders
@@ -15,20 +15,20 @@ Stardust Crusaders
 Licence:
 GNU GPL 3.0
 
-licence je zminena v dokumentaci
+Licence je zmíněna v dokumentaci
 
 # IVS druhý projekt
 Jako druhý projekt pro IVS jsme udělali Bizarní kalkulačku. Tato kalkulačka umí
-základní matematické operace a má jednoduché avšak na pohled velice příjemné
+základní matematické operace a má jednoduché, avšak na pohled velice příjemné
 grafické rozhraní.
 
 ## Podrobnosti
-Kalkulačku jsme vypracovali v jazyce python a pro tvorbu grafického rozhraní jsme použili
+Kalkulačku jsme vypracovali v jazyce Python a pro tvorbu grafického rozhraní jsme použili
 knihovnu Gtk. 
 
 ## Příklad použití
 Kalkulačku lze použít k jednoduchým výpočtům, avšak dlouhodobé používání by mohlo
-být mírně nepříjemné, jelikož jde na vstup zadat pouze dvě čísla najednou.
+být mírně nepříjemné, jelikož program umí zpracovat pouze jednu operaci najednou.
 
 ## GitHub
 Naši kalkulačku si můžete stáhnout zde:
