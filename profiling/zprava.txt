@@ -1,0 +1,16 @@
+Profiling:
+
+Na obrazku vystupxxxcisel.png lze videt kolik casu z volani funkce exp zabere build in funkce pythonu pow.
+S rostoucim poctem cisel zabira funkce v behu programu stale vice casu.
+
+Jelikoz pow zabere pouze 1/2 tak je jasne, ze nami naimplementovana funkce exp by se urcite dala zlepsit
+a to napriklad mensim poctem if statementu.
+
+Program travi nejvice casu na funkci exp (31 %) a nasledne na add (7 %) - pro 1000 cisel.
+
+Profiling se pousti ve slozce src/ jako:
+
+		python3 profiling.py < data.txt
+
+a pocita stim ze data.txt budou na kazdem radku obsahovat jedno cislo.
+
