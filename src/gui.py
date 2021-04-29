@@ -6,6 +6,7 @@ The graphical interaface uses GTK as the graphical framekwork.
 Gtk API is called by the python gi library.
 """
 import parser
+import os
 from gi.repository import Gtk, Gdk, GdkPixbuf, Pango
 
 
@@ -101,6 +102,15 @@ def on_key_pressed(widget, event, entry):
     if event.keyval == Gdk.KEY_Return or chr(event.keyval) == "=":
         user_result(widget, entry)
 
+def on_button_pressed(widget, event, builder):
+    """ @brief handler for button-press-event
+    @param widget widget active when key press occured
+    @param event type of event that occured
+    @param builder builder class for making gui from glade
+    """
+    if event.button == 2:
+        os.system("xdg-open ../gui/manual.png")
+
 
 def validate_entry_insert(entry, char_in, index_before, index_after, builder):
     """ @brief checks if the entry is valid after insert signal
@@ -148,10 +158,14 @@ def connect_signals(builder):
     entry.connect_after("insert-text", validate_entry_insert, builder)
     entry.connect_after("delete-text", validate_entry_delete, builder)
     window.connect("destroy", Gtk.main_quit)
+    manual = builder.get_object("manual")
+    manual.connect("button-press-event", on_button_pressed, builder)
     font_change = builder.get_object('font_change')
     font_change.connect("activate", font_select, builder)
     about = builder.get_object('about')
     about.connect("activate", about_show)
+    manual = builder.get_object('manual')
+    manual.connect("activate", manual_show)
     exit_button = builder.get_object('exit')
     exit_button.connect("activate", Gtk.main_quit)
 
@@ -193,6 +207,13 @@ def about_show(self):
     response = about.run()
     if response == -4:
         about.close()
+
+def manual_show(self):
+    """ @brief open manual
+    @param self the caller of the function
+    """
+    del self
+    os.system("xdg-open ../dokumentace.pdf")
 
 
 def connect_signal_grid(builder, grid_name, rows, columns):
