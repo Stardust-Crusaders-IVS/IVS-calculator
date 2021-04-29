@@ -15,10 +15,10 @@ def main():
     Start the cycle for gui drawing
     """
     builder = Gtk.Builder()
-    builder.add_from_file("../gui/prototype1.glade")
+    builder.add_from_file("./gui/prototype1.glade")
     window_main = builder.get_object("window1")
     window_main.set_title("BizarreCalc")
-    icon = GdkPixbuf.Pixbuf.new_from_file("../gui/icon_small.jpeg")
+    icon = GdkPixbuf.Pixbuf.new_from_file("./gui/icon_small.jpeg")
     window_main.set_icon(icon)
     change_fonts(builder, "")
     connect_signals(builder)
@@ -110,7 +110,7 @@ def on_button_pressed(widget, event):
     """
     del widget
     if event.button == 2:
-        os.system("xdg-open ../gui/manual.png")
+        os.system("xdg-open ./gui/manual.png")
 
 
 def validate_entry_insert(entry, char_in, index_before, index_after, builder):
@@ -193,7 +193,7 @@ def about_show(self):
     """
     del self
     about = Gtk.AboutDialog("O aplikaci")
-    icon = GdkPixbuf.Pixbuf.new_from_file("../gui/icon.jpeg")
+    icon = GdkPixbuf.Pixbuf.new_from_file("./gui/icon.jpeg")
     about.set_logo(icon)
     about.set_comments("Bizarní dobrodružství s kalkulačkou.")
     about.set_version("1.0")
