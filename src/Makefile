@@ -12,6 +12,7 @@ SRC_FILES = ./src/*.py
 APP = ./gui.py
 TEST = ./math_library_tests.py
 INTERPRET = python3
+PROFILING = ./profiling.py
 TRASH = /dev/null
 MSSG = Since this is a python project, this wont compile anything
 
@@ -38,4 +39,4 @@ run:
 	$(INTERPRET) $(APP) 2>$(TRASH)
 
 profile:
-	# TODO
+	echo $(MSSG)
