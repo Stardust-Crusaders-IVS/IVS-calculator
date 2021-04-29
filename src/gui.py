@@ -160,7 +160,7 @@ def connect_signals(builder):
     entry.connect_after("delete-text", validate_entry_delete, builder)
     window.connect("destroy", Gtk.main_quit)
     manual = builder.get_object("manual")
-    manual.connect("button-press-event", on_button_pressed, builder)
+    manual.connect("button-press-event", on_button_pressed)
     font_change = builder.get_object('font_change')
     font_change.connect("activate", font_select, builder)
     about = builder.get_object('about')
