@@ -293,7 +293,10 @@ def compute_binary(array):
         except ZeroDivisionError:
             return "Chyba: nelze dělit nulou"
     elif operator == "^":
+        try:
             return str(m.exp(int(num1), int(num2)))
+        except ValueError:
+            return "Chyba: záporná mocnina"
     else: # root
         try:
             return str(m.sqrt(float(num2), int(num1)))
